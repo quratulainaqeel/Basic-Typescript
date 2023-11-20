@@ -145,17 +145,80 @@
 // const myimg=document.querySelector("img")!
 // myimg.src
 
-const form = document.getElementById("myform") as HTMLFormElement;
-const myinput = document.querySelector("form > input") as HTMLInputElement;
+// const form = document.getElementById("myform") as HTMLFormElement;
+// const myinput = document.querySelector("form > input") as HTMLInputElement;
 
-form.onsubmit = (e) => {
-  e.preventDefault();
-  const h2 = document.createElement("h2");
-  const body = document.querySelector("body")!;
-  const val = Number(myinput.value);
-  console.log("input given", myinput.value);
-  console.log("val", val);
+// form.onsubmit = (e) => {
+//   e.preventDefault();
+//   const h2 = document.createElement("h2");
+//   const body = document.querySelector("body")!;
+//   const val = Number(myinput.value);
 
-  h2.textContent = String(val + 20);
-  body.append(h2)
+//   h2.textContent = String(val + 20);
+//   body.append(h2)
+// };
+
+// interface Person {
+//   name: string;
+//   email: string;
+//   // [key: string]: string;
+// }
+// const myObj: Person = {
+//   name: "Amna",
+//   email: "amna@gmail.com",
+// };
+
+// const getname = (): string => {
+//   return myObj["name"];
+// };
+// const getemail = (): string => {
+//   return myObj["email"];
+// };
+// const getData = (key: keyof Person): string => {
+//   return myObj[key];
+// };
+// console.log("name: ", getname());
+// console.log("email", getemail());
+// console.log("data", getData("name"));
+
+// ---------------------------------------------------------
+
+// Utility Type
+
+// Partial<type>
+
+// type User = {
+//   name: string;
+//   email: string;
+// };
+// type User2=Partial<User>  // it indicate both values may be given or may be not
+
+//  Required<type>  Opposite to partial
+
+// type User = {
+//   name?: string;
+//   email?: string;
+// };
+// const user: Required<User> = {
+//   name: "Qurat",
+//   email: "qurat@gmail.com",
+// };
+
+//  Readonly<type>  - make every property readonly
+
+// type User = {
+//   name: string;
+//   email: string;
+// };
+// const user: Readonly<User> = {
+//   name: "Qurat",
+//   email: "qurat@gmail.com",
+// };
+
+// Record<key,type>
+
+type User = {
+  name: string;
+  email: string;
 };
+type User2 = Record<"name" | "email", string>;
