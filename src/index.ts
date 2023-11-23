@@ -217,8 +217,170 @@
 
 // Record<key,type>
 
-type User = {
+// type User = {
+//   name: string;
+//   email: string;
+// };
+// type User2 = Record<"name" | "email", string>;
+
+// // Pick<Type, key>;
+
+// interface OrderInfo {
+//   id: string;
+//   user: string;
+//   city: string;
+//   zip_code: string;
+//   country: string;
+// }
+// type ShippingInfo = Pick<OrderInfo,"user"|"country"|"city">
+
+//  Omit<Type, key>;
+
+// interface ShippingInfo {
+//   id: string;
+//   user: string;
+//   city: string;
+//   zip_code: string;
+//   country: string;
+// }
+// type Random=Omit<ShippingInfo,"zip_code">
+
+// Exclude<Type, ExcludedUnion>
+
+// type MyTypes = number|string|boolean;
+// type Random = Exclude<MyTypes,boolean>;
+
+// Extract<Type, Union>
+
+// type MyTypes = number|string|boolean;
+// type Random = Extract<MyTypes,boolean>;
+
+// NonNuullable<Type>
+
+// type MyTypes = number | string | boolean | null | undefined;
+// type Random = NonNullable<MyTypes>;
+// type Random2 = Exclude<MyTypes, null | undefined>;
+
+// Parameter<type>            - give parameters in array
+
+// const myfunc = (a: number, b: string) => console.log(a + b);
+// type Random = Parameters<typeof myfunc>;
+
+// ConstructorParameter<type>            - give parameters in array
+
+// class sampleClass {
+//   constructor(a: string, b: string) {}
+// }
+// type random = ConstructorParameters<typeof sampleClass>;
+
+// ReturnType<Type>
+
+// const myfunc = (a: number, b: number): number => {
+//   console.log(a + b);
+//   return a;
+// };
+// type Random = ReturnType<typeof myfunc>;
+
+// InstanceType<Type>
+
+// class sampleClass {
+//   constructor(public s: string, public t: string) {}
+// }
+// type random = InstanceType<typeof sampleClass>;
+// const user: random = {
+//   s: "67",
+//   t: "rameen",
+// };
+
+// ---------------------------------------------------------
+
+// Generic
+
+// const func = <CustomType>(n: CustomType): CustomType => {
+//   return n;
+// };
+// let ans = func("33");
+// let ans2 = func(3);
+// let ans3 = func(true);
+
+// interface Person {
+//   name: string;
+//   age: number;
+// }
+
+// const func = <T>(n: T): T => {
+//   return n;
+// };
+
+// const Person1: Person = {
+//   name: "Ali",
+//   age: 20,
+// };
+// let ans = func(Person1);
+// let ans2 = func<Person>(Person1);
+
+// const func = <T, U>(n: T, o: U): { n: T; o: U } => {
+//   return { n, o };
+// };
+// let ans = func<number, string>(3, "lol");
+
+// const func = <T, U extends T>(n: T, o: U): { n: T; o: U } => {
+//   return { n, o };
+// };
+// let ans = func<number, number>(3, 78); // bcz U extends T thats's why we cannot send different datatype from T
+
+// interface Person1 {
+//   name: string;
+//   age: number;
+// }
+// interface Person2 {
+//   name: string;
+//   age: number;
+//   email: string;
+// }
+// const user1: Person1 = {
+//   name: "ALi",
+//   age: 23,
+// };
+// const user2: Person2 = {
+//   name: "ALi",
+//   age: 23,
+//   email: "sdk@gmail.com",
+// };
+// const func = <T, U extends T>(n: T, o: U): { n: T; o: U } => {
+//   return { n, o };
+// };
+// let ans = func<Person1, Person2>(user1, user2);
+
+type Person1 = {
   name: string;
-  email: string;
+  age: number;
 };
-type User2 = Record<"name" | "email", string>;
+const Details: Person1[] = [
+  {
+    name: "Asad",
+    age: 71,
+  },
+  {
+    name: "Kashif",
+    age: 17,
+  },
+  {
+    name: "Rameen",
+    age: 37,
+  },
+  {
+    name: "Raza",
+    age: 34,
+  },
+];
+const filterByPeoples = <T, U extends keyof T>(
+  arr: T[],
+  property:  U,
+  value: T[U]
+) => {
+  return arr.filter((item) => item[property] == value);
+};
+
+const filteredPeopleByName = filterByPeoples(Details, "name", "Asad");
+console.log(filteredPeopleByName)
